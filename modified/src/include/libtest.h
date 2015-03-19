@@ -8,6 +8,7 @@
 #ifndef LIBTEST_H_
 #define LIBTEST_H_
 
+#include "modified.h"
 #include "original_only.h"
 
 #ifdef __cplusplus

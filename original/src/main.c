@@ -28,7 +28,7 @@ int main(int argc, const char * argv[]) {
 	int z = roll();
 	printf("z => %d\n", z);
 
-	printf("The mean of [%d, %d, %d] is %d\n", x, y, z, mean3(x, y, z));
+	printf(ABC("The mean of [%d, %d, %d] is %d") "\n", x, y, z, mean3(x, y, z));
 
     return 0;
 }
