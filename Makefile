@@ -17,8 +17,8 @@ dirs:
 	mkdir -p $(LIB)
 	mkdir -p $(DIST)
 
-$(BUILD)/libtest.o:
-	$(CC) $(CFLAGS) $(C_INCLUDES) -c -fpic -fPIC $(MODIFIED_SRC)/libtest/libtest.c -o $(BUILD)/libtest.o
+$(BUILD)/%.o:$(MODIFIED_SRC)/libtest/%.c
+	$(CC) $(CFLAGS) $(C_INCLUDES) -c -fpic -fPIC $^ -o $@
 
 $(BUILD)/%.o:$(ORIGINAL_SRC)/libtest/%.c
 	$(CC) $(CFLAGS) $(C_INCLUDES) -c -fpic -fPIC $^ -o $@
