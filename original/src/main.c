@@ -16,7 +16,8 @@ int roll() {
 	return 1 + 100 * ((double) rand()/((double) RAND_MAX + 1));
 }
 
-int main(int argc, const char * argv[]) {
+int main(int argc, const char * argv[]) 
+{
 	int seed = time(NULL);
 	printf("seed => %d\n", seed);
 	srand(seed);
@@ -29,6 +30,8 @@ int main(int argc, const char * argv[]) {
 	printf("z => %d\n", z);
 
 	printf(ABC("The mean of [%d, %d, %d] is %d") "\n", x, y, z, mean3(x, y, z));
+
+	int r = testf();
 
     return 0;
 }

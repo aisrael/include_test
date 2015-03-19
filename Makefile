@@ -1,8 +1,9 @@
 ORIGINAL_SRC=original/src
 MODIFIED_SRC=modified/src
+LIBTEST=libtest
 INCLUDE=include
 BUILD=build
-C_INCLUDES=-I $(MODIFIED_SRC)/$(INCLUDE) -I $(ORIGINAL_SRC)/$(INCLUDE) 
+C_INCLUDES=-I $(MODIFIED_SRC)/$(INCLUDE) -I $(ORIGINAL_SRC)/$(INCLUDE) -I $(MODIFIED_SRC)/$(LIBTEST) -I $(MODIFIED_SRC)/$(LIBTEST)
 LIB=lib
 DIST=dist
 CC=gcc
@@ -10,7 +11,7 @@ CPP=g++
 CFLAGS=
 CPPFLAGS=
 
-all: main
+all: ./$(DIST)/main.exe
 
 dirs:
 	mkdir -p $(BUILD)
@@ -23,11 +24,13 @@ $(BUILD)/%.o:$(MODIFIED_SRC)/libtest/%.c
 $(BUILD)/%.o:$(ORIGINAL_SRC)/libtest/%.c
 	$(CC) $(CFLAGS) $(C_INCLUDES) -c -fpic -fPIC $^ -o $@
 	
-libtest: dirs $(BUILD)/means.o $(BUILD)/libtest.o	
-	$(CC) $(CFLAGS) -shared $(BUILD)/means.o $(BUILD)/libtest.o -o $(LIB)/libtest.so 
+./$(DIST)/libtest.dll: dirs $(BUILD)/means.o $(BUILD)/libtest.o	$(BUILD)/testf.o
+	$(CC) $(CFLAGS) -shared $(BUILD)/means.o $(BUILD)/libtest.o $(BUILD)/testf.o -o $(DIST)/libtest.dll -H
 
-main: dirs libtest
-	$(CC) $(CPPFLAGS) $(C_INCLUDES) -L $(LIB) $(ORIGINAL_SRC)/main.c -ltest -o $(DIST)/main
+
+
+./$(DIST)/main.exe: dirs ./$(DIST)/libtest.dll
+	$(CC) $(CPPFLAGS) $(C_INCLUDES) $(ORIGINAL_SRC)/main.c  -o $(DIST)/main.exe -L./$(DIST) -ltest -H
 
 clean:
 	rm -rf $(DIST)
