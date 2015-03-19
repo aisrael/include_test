@@ -8,6 +8,8 @@
 #ifndef LIBTEST_H_
 #define LIBTEST_H_
 
+#include "original_only.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif

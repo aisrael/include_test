@@ -21,7 +21,7 @@ int main(int argc, const char * argv[]) {
 	printf("seed => %d\n", seed);
 	srand(seed);
 
-	int x = roll();
+	int x = LIFE;
 	printf("x => %d\n", x);
 	int y = roll();
 	printf("y => %d\n", y);
