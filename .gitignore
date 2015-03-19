@@ -1,0 +1,10 @@
+/.idea/
+/nbproject/
+/.vagrant/
+/dist
+/.cproject
+/.project
+/build/
+/lib/
+/.settings/
+/autom4te.cache/
